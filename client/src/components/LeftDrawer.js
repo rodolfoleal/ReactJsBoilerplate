@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import Drawer from 'material-ui/Drawer';
 import { spacing, typography } from 'material-ui/styles';
 import { white, blue600 } from 'material-ui/styles/colors';
+import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router';
 import Avatar from 'material-ui/Avatar';
+import { propTypes } from 'redux-form';
 
 const LeftDrawer = (props) => {
   let { navDrawerOpen } = props;
@@ -24,6 +26,11 @@ const LeftDrawer = (props) => {
       color: white,
       fontSize: 14
     },
+    divBottom: {
+      position: 'absolute',
+      bottom: 0,
+      width: '100%'
+    },
     avatar: {
       div: {
         padding: '15px 0 20px 15px',
@@ -37,14 +44,17 @@ const LeftDrawer = (props) => {
         boxShadow: '0px 0px 0px 8px rgba(0,0,0,0.2)'
       },
       span: {
+        fontSize: "120%",
         paddingTop: 12,
         display: 'block',
         color: 'white',
-        fontWeight: 600,
-        textShadow: '1.5px 1.5px #444'
+        fontWeight: 500,
+        textShadow: '1.3px 1.3px #444'
       }
     }
   };
+
+
 
   return (
     <Drawer
@@ -55,7 +65,7 @@ const LeftDrawer = (props) => {
         My Wishes
         </div>
       <div style={styles.avatar.div}>
-        <Avatar src="http://www.material-ui.com/images/uxceo-128.jpg"
+        <Avatar src={props.avatar}
           size={80}
           style={styles.avatar.icon} />
         <span style={styles.avatar.span}>{props.username}</span>
@@ -71,6 +81,15 @@ const LeftDrawer = (props) => {
           />
         )}
       </div>
+      <div style={styles.divBottom}>
+        <MenuItem
+          key="logout"
+          style={styles.menuItem}
+          primaryText="Logout"
+          leftIcon={<PermIdentity />}
+          containerElement={<Link to="/logout" />}
+        />
+      </div>
     </Drawer >
   );
 };
@@ -79,6 +98,7 @@ LeftDrawer.propTypes = {
   navDrawerOpen: PropTypes.bool,
   menus: PropTypes.array,
   username: PropTypes.string,
+  avatar: PropTypes.string
 };
 
 export default LeftDrawer;

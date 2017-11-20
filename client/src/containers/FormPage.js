@@ -1,13 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import Toggle from 'material-ui/Toggle';
-import DatePicker from 'material-ui/DatePicker';
-import {grey400} from 'material-ui/styles/colors';
-import Divider from 'material-ui/Divider';
+import { grey400 } from 'material-ui/styles/colors';
 import PageBase from '../components/PageBase';
 
 const FormPage = () => {
@@ -32,48 +27,40 @@ const FormPage = () => {
   };
 
   return (
-    <PageBase title="Form Page"
-              navigation="Application / Form Page">
+    <PageBase title="Adicione itens"
+      navigation="Natal">
       <form>
 
         <TextField
-          hintText="Name"
-          floatingLabelText="Name"
+          hintText="Item"
+          floatingLabelText="Descreva o item que deseja"
           fullWidth={true}
         />
 
-        <SelectField
-          floatingLabelText="City"
-          value=""
-          fullWidth={true}>
-          <MenuItem key={0} primaryText="London"/>
-          <MenuItem key={1} primaryText="Paris"/>
-          <MenuItem key={2} primaryText="Rome"/>
-        </SelectField>
+        <TextField
+          hintText="Link 1"
+          floatingLabelText="Adicione um link"
+          fullWidth={true}
+        />
 
-        <DatePicker
-          hintText="Expiration Date"
-          floatingLabelText="Expiration Date"
-          fullWidth={true}/>
-
-        <div style={styles.toggleDiv}>
-          <Toggle
-            label="Disabled"
-            labelStyle={styles.toggleLabel}
-          />
-        </div>
-
-        <Divider/>
+        <TextField
+          hintText="Link 2"
+          floatingLabelText="Adicione outro link"
+          fullWidth={true}
+        />
 
         <div style={styles.buttons}>
+
+          <RaisedButton label="Adiconar"
+            style={styles.saveButton}
+            type="submit"
+            primary={true} />
+
           <Link to="/">
-            <RaisedButton label="Cancel"/>
+            <RaisedButton label="Limpar" />
           </Link>
 
-          <RaisedButton label="Save"
-                        style={styles.saveButton}
-                        type="submit"
-                        primary={true}/>
+
         </div>
       </form>
     </PageBase>

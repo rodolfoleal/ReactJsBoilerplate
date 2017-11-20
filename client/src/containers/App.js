@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navDrawerOpen: true
+      navDrawerOpen: false
     };
   }
 
@@ -51,7 +51,8 @@ class App extends React.Component {
 
           <LeftDrawer navDrawerOpen={navDrawerOpen}
             menus={Data.menus}
-            username="User Admin"
+            username="juscelino kubitschek"
+            avatar="https://drupal-multisite-s3.s3-us-west-2.amazonaws.com/files/12-09-juscelino-kubitschek-presidente-brasil-hoje-na-historia-history-channel2.png"
             isAuthenticated={this.props.authenticated} />
 
           <div style={styles.container}>

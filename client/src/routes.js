@@ -6,6 +6,7 @@ import LoginPage from './containers/LoginPage';
 import FormPage from './containers/FormPage';
 import TablePage from './containers/TablePage';
 import Dashboard from './containers/DashboardPage';
+import ListPage from './containers/ListPage';
 import Signout from './containers/auth/Signout';
 import Signup from './containers/auth/Signup';
 
@@ -13,7 +14,7 @@ export default (
   <Route>
     <Route path="login" component={LoginPage} />
     <Route path="/" component={App}>
-      <IndexRoute component={Dashboard} />
+      <IndexRoute component={ListPage} />
       <Route path="dashboard" component={Dashboard} />
       <Route path="form" component={FormPage} />
       <Route path="table" component={TablePage} />

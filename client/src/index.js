@@ -19,7 +19,7 @@ import { AUTH_USER } from './actions/types';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-const token = localStorage('token');
+const token = localStorage.getItem('token');
 //If have a token considerer user to be signed
 if (token) {
     //we need to update application state
