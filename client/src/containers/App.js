@@ -51,7 +51,7 @@ class App extends React.Component {
 
           <LeftDrawer navDrawerOpen={navDrawerOpen}
             menus={Data.menus}
-            username="juscelino kubitschek"
+            username="Juscelino kubitschek"
             avatar="https://drupal-multisite-s3.s3-us-west-2.amazonaws.com/files/12-09-juscelino-kubitschek-presidente-brasil-hoje-na-historia-history-channel2.png"
             isAuthenticated={this.props.authenticated} />
 

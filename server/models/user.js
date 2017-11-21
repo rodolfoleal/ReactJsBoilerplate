@@ -3,9 +3,32 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
 //Define model
-const userSchema = new Schema({
-    email: { type: String, unique: true, lowercase: true },
-    password: String
+var userSchema = mongoose.Schema({
+
+    local: {
+        username: String,
+        email: { type: String, unique: true, lowercase: true },
+        password: String,
+    },
+    facebook: {
+        id: String,
+        token: String,
+        name: String,
+        email: String
+    },
+    twitter: {
+        id: String,
+        token: String,
+        displayName: String,
+        username: String
+    },
+    google: {
+        id: String,
+        token: String,
+        email: String,
+        name: String
+    }
+
 });
 
 //Before save model run this function encrypt password
@@ -15,9 +38,9 @@ userSchema.pre('save', function (next) {
     bcrypt.genSalt(10, (err, salt) => {
         if (err) { return next(err); }
 
-        bcrypt.hash(user.password, salt, null, (err, hash) => {
+        bcrypt.hash(user.local.password, salt, null, (err, hash) => {
             if (err) { return next(err); }
-            user.password = hash;
+            user.local.password = hash;
 
             next();
         });
@@ -25,9 +48,9 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    bcrypt.compare(candidatePassword, this.local.password, (err, isMatch) => {
         if (err) { return callback(err); }
-
+        console.log(isMatch);
         callback(null, isMatch);
     });
 }

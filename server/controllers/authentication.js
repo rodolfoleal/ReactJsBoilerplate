@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jwt-simple');
 const config = require('../config');
+const passport = require('passport');
 
 function tokenForUser(user) {
     const timestamp = new Date().getTime();
@@ -8,25 +9,41 @@ function tokenForUser(user) {
 }
 
 exports.signup = (req, res, next) => {
+    const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
-    if (!email || !password) {
-        return res.status(422).send({ error: 'Your must provide email and password' });
+    if (!email || !password || !username) {
+        return res.status(422).send({ error: 'Your must provide Username, email and password' });
     }
 
+    //Checkif Username already exists
+    User.findOne({ 'local.username': username }, (err, existingUser) => {
+        if (err) { return next(err); }
+
+        if (existingUser) {
+            return res.status(422).send({ error: 'Username already exists' });
+        }
+    });
+
     //See if user with mail exists
-    User.findOne({ email: email }, (err, existingUser) => {
+    User.findOne({ 'local.email': email }, (err, existingUser) => {
         if (err) { return next(err); }
 
         if (existingUser) {
             return res.status(422).send({ error: 'Email already exists' });
         }
     });
+
+
     //If user with email not exists create ansave record
     const user = new User({
-        email: email,
-        password: password
+        local:
+            {
+                username,
+                email,
+                password
+            }
     })
 
     user.save((err) => {
@@ -41,5 +58,15 @@ exports.signup = (req, res, next) => {
 exports.signin = (req, res, next) => {
     //user already have email and password, he just need a token
     const user = req.user;
+    console.log(user);
     res.json({ token: tokenForUser(user) });
+}
+
+exports.signinWithToken = (req, res, next) => {
+    //user already have email and password, he just need a token
+    const user = req.user;
+
+    var token = tokenForUser(user);
+    console.log(token);
+    res.redirect(`${config.facebookAuth.callbackURL}?token=${token}`);
 }

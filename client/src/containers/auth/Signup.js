@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
 import { grey500, white } from 'material-ui/styles/colors';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
-import Help from 'material-ui/svg-icons/action/help';
 import { Link } from 'react-router';
 import ThemeDefault from '../../theme-default';
 import { reduxForm, Field } from 'redux-form';
@@ -77,7 +74,7 @@ class Signup extends Component {
           marginLeft: 5
         },
       }
-    }
+    };
   }
 
   handleFormSubmit(formProps) {
@@ -96,9 +93,8 @@ class Signup extends Component {
 
   render() {
     const { handleSubmit, fields: { username, email, password, passwordConfirm } } = this.props;
-
     const styles = this.state.styles;
-    console.log(passwordConfirm);
+
     return (
       <MuiThemeProvider muiTheme={ThemeDefault}>
         <div>
@@ -131,7 +127,6 @@ class Signup extends Component {
                   hintText="Password"
                   floatingLabelText="Password"
                   fullWidth={true}
-                  type="password"
                 />
                 <Field
                   name="passwordConfirm"
@@ -141,7 +136,6 @@ class Signup extends Component {
                   hintText="Confirm you password"
                   floatingLabelText="Confirm you password"
                   fullWidth={true}
-                  type="password"
                 />
 
                 <div>
@@ -156,22 +150,6 @@ class Signup extends Component {
             </Paper>
 
             <div style={styles.buttonsDiv}>
-              <FlatButton
-                label="Register"
-                href="/"
-                style={styles.flatButton}
-                icon={<PersonAdd />}
-              />
-
-              <FlatButton
-                label="Forgot Password?"
-                href="/"
-                style={styles.flatButton}
-                icon={<Help />}
-              />
-            </div>
-
-            <div style={styles.buttonsDiv}>
               <Link to="/" style={{ ...styles.btn, ...styles.btnFacebook }}>
                 <i className="fa fa-facebook fa-lg" />
                 <span style={styles.btnSpan}>Log in with Facebook</span>
@@ -184,12 +162,12 @@ class Signup extends Component {
           </div>
         </div>
       </MuiThemeProvider>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.error }
+  return { errorMessage: state.auth.error };
 }
 
 function validate(formProps) {

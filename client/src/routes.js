@@ -9,6 +9,7 @@ import Dashboard from './containers/DashboardPage';
 import ListPage from './containers/ListPage';
 import Signout from './containers/auth/Signout';
 import Signup from './containers/auth/Signup';
+import Signin from './containers/auth/Signin';
 
 export default (
   <Route>
@@ -20,6 +21,7 @@ export default (
       <Route path="table" component={TablePage} />
       <Route path="signout" component={Signout} />
       <Route path="signup" component={Signup} />
+      <Route path="signin" component={Signin} />
       <Route path="*" component={NotFoundPage} />
     </Route>
   </Route>

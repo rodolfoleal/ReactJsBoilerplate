@@ -6,7 +6,6 @@ import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router';
 import Avatar from 'material-ui/Avatar';
-import { propTypes } from 'redux-form';
 
 const LeftDrawer = (props) => {
   let { navDrawerOpen } = props;

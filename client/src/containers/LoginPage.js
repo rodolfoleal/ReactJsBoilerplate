@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import ThemeDefault from '../theme-default';
 import { reduxForm, Field } from 'redux-form';
 import { TextField } from 'redux-form-material-ui';
+import config from '../config';
 import * as actions from '../actions';
 
 class LoginPage extends Component {
@@ -77,12 +78,15 @@ class LoginPage extends Component {
           marginLeft: 5
         },
       }
-    }
+    };
   }
 
   handleFormSubmit({ email, password }) {
-    console.log(email, password);
     this.props.signinUser({ email, password });
+  }
+
+  handleFacebookSignin() {
+    this.props.signinFacebookUser();
   }
 
   renderAlert() {
@@ -125,7 +129,6 @@ class LoginPage extends Component {
                   errorText={this.props.errorMessage}
                   floatingLabelText="Password"
                   fullWidth={true}
-                  type="password"
                 />
 
                 <div>
@@ -142,7 +145,7 @@ class LoginPage extends Component {
             <div style={styles.buttonsDiv}>
               <FlatButton
                 label="Register"
-                href="/"
+                href="/signup"
                 style={styles.flatButton}
                 icon={<PersonAdd />}
               />
@@ -156,10 +159,10 @@ class LoginPage extends Component {
             </div>
 
             <div style={styles.buttonsDiv}>
-              <Link to="/" style={{ ...styles.btn, ...styles.btnFacebook }}>
+              <a href={`${config.apihost}/auth/facebook`} style={{ ...styles.btn, ...styles.btnFacebook }}>
                 <i className="fa fa-facebook fa-lg" />
                 <span style={styles.btnSpan}>Log in with Facebook</span>
-              </Link>
+              </a>
               <Link to="/" style={{ ...styles.btn, ...styles.btnGoogle }}>
                 <i className="fa fa-google-plus fa-lg" />
                 <span style={styles.btnSpan}>Log in with Google</span>
@@ -168,12 +171,12 @@ class LoginPage extends Component {
           </div>
         </div>
       </MuiThemeProvider>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.error }
+  return { errorMessage: state.auth.error };
 }
 
 
