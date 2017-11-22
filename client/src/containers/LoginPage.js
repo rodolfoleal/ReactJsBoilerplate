@@ -163,10 +163,10 @@ class LoginPage extends Component {
                 <i className="fa fa-facebook fa-lg" />
                 <span style={styles.btnSpan}>Log in with Facebook</span>
               </a>
-              <Link to="/" style={{ ...styles.btn, ...styles.btnGoogle }}>
+              <a href={`${config.apihost}/auth/google`} style={{ ...styles.btn, ...styles.btnGoogle }}>
                 <i className="fa fa-google-plus fa-lg" />
                 <span style={styles.btnSpan}>Log in with Google</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

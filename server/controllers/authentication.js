@@ -68,5 +68,5 @@ exports.signinWithToken = (req, res, next) => {
 
     var token = tokenForUser(user);
     console.log(token);
-    res.redirect(`${config.facebookAuth.callbackURL}?token=${token}`);
+    res.redirect(`${config.singinCallback}?token=${token}`);
 }
