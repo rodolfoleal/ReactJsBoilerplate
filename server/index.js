@@ -7,9 +7,16 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 
+mongoose.Promise = global.Promise;
 
 //Set Db
-mongoose.connect('mongodb://localhost:auth/auth')
+mongoose.connect('mongodb://localhost:auth/auth');
+
+mongoose.connection
+    .once('open', () => console.log('Mongo connected'))
+    .on('error', (error) => {
+        console.warn('Failed to connect to mongo', error);
+    });
 
 //App setup
 app.use(morgan('combined'));

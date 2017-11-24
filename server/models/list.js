@@ -8,6 +8,6 @@ var listSchema = mongoose.Schema({
     itens: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
 });
 
-const ModelClass = mongoose.model('List', listSchema);
+const List = mongoose.model('List', listSchema);
 
-module.exports = ModelClass;
+module.exports = List;

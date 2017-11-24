@@ -7,8 +7,14 @@ var userSchema = mongoose.Schema({
 
     lists: [{ type: Schema.Types.ObjectId, ref: 'List' }],
     local: {
-        username: String,
-        email: { type: String, unique: true, lowercase: true, sparse: true },
+        username: { type: String, unique: true, lowercase: true },
+        email: {
+            type: String,
+            unique: true,
+            lowercase: true,
+            sparse: true,
+            required: [true, 'É obrigratório fornecer um e-mail.']
+        },
         password: String,
     },
     facebook: {
@@ -57,7 +63,7 @@ userSchema.methods.comparePassword = function (candidatePassword, callback) {
 }
 
 //Create model class
-const ModelClass = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 //Export Model
-module.exports = ModelClass;
+module.exports = User;

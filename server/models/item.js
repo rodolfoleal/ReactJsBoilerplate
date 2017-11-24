@@ -9,6 +9,6 @@ var itemSchema = mongoose.Schema({
     isscret: Bollean
 });
 
-const ModelClass = mongoose.model('Item', itemSchema);
+const Item = mongoose.model('Item', itemSchema);
 
-module.exports = ModelClass;
+module.exports = Item;
