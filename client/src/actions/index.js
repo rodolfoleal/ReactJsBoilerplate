@@ -25,7 +25,7 @@ export function signinUser({ email, password }) {
             .then(response => {
                 //If request is good:
                 //Upsate state to indicate user is authenticated
-                dispatch({ type: AUTH_USER });
+                dispatch({ type: AUTH_USER, payload: response.data.user });
                 //Save the JWT token
                 localStorage.setItem('token', response.data.token);
 
@@ -50,7 +50,7 @@ export function signinFacebookUser() {
             .then(response => {
                 //If request is good:
                 //Upsate state to indicate user is authenticated
-                dispatch({ type: AUTH_USER });
+                dispatch({ type: AUTH_USER, payload: response.data.user });
                 //Save the JWT token
                 localStorage.setItem('token', response.data.token);
 
@@ -86,7 +86,7 @@ export function signupUser({ username, email, password }) {
     return (dispatch) => {
         axios.post(`${ROOT_URL}/signup`, { username, email, password })
             .then(response => {
-                dispatch({ type: AUTH_USER });
+                dispatch({ type: AUTH_USER, payload: response.data.user });
                 localStorage.setItem('token', response.data.token);
                 browserHistory.push('/dashboard');
             })

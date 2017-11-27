@@ -53,7 +53,7 @@ class App extends React.Component {
             menus={Data.menus}
             username="Juscelino kubitschek"
             avatar="https://drupal-multisite-s3.s3-us-west-2.amazonaws.com/files/12-09-juscelino-kubitschek-presidente-brasil-hoje-na-historia-history-channel2.png"
-            isAuthenticated={this.props.authenticated} />
+            isAuthenticated={this.props.isAuthenticated} />
 
           <div style={styles.container}>
             {this.props.children}
@@ -67,7 +67,7 @@ class App extends React.Component {
 App.propTypes = {
   children: PropTypes.element,
   width: PropTypes.number,
-  isSuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool
 };
 
 

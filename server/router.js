@@ -1,4 +1,5 @@
-const Authentication = require('./controllers/authentication')
+const Authentication = require('./controllers/authentication');
+const ListController = require('./controllers/list');
 const passportService = require('./services/passport');
 const passport = require('passport');
 
@@ -21,5 +22,12 @@ module.exports = (app) => {
     app.get('/auth/facebook/callback', facebookCallback, Authentication.signinWithToken);
     app.get('/auth/google', googleSignin);
     app.get('/auth/google/callback', googleCallback, Authentication.signinWithToken);
+
+    //List routes
+    app.get('/list/:id', ListController.index);
+    app.post('/list', ListController.create);
+    app.delete('/list/:id', ListController.delete);
+    app.post('/list/:id/item', ListController.addItem);
+    app.delete('/list/:id/item/:itemId', ListController.removeItem);
 
 }

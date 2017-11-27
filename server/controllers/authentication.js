@@ -39,11 +39,11 @@ exports.signup = (req, res, next) => {
     //If user with email not exists create ansave record
     const user = new User({
         local:
-            {
-                username,
-                email,
-                password
-            }
+        {
+            username,
+            email,
+            password
+        }
     })
 
     user.save((err) => {
@@ -51,15 +51,14 @@ exports.signup = (req, res, next) => {
             return next(err);
         }
 
-        res.json({ token: tokenForUser(user) });
+        res.json({ token: tokenForUser(user), user: user });
     });
 }
 
 exports.signin = (req, res, next) => {
     //user already have email and password, he just need a token
     const user = req.user;
-    console.log(user);
-    res.json({ token: tokenForUser(user) });
+    res.json({ token: tokenForUser(user), user: user });
 }
 
 exports.signinWithToken = (req, res, next) => {
@@ -67,6 +66,5 @@ exports.signinWithToken = (req, res, next) => {
     const user = req.user;
 
     var token = tokenForUser(user);
-    console.log(token);
     res.redirect(`${config.singinCallback}?token=${token}`);
 }

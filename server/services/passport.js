@@ -55,6 +55,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
         if (err) { return done(err, false); }
 
         if (user) {
+            req.auth.user = user;
             done(null, user);
         } else {
             done(null, false);
@@ -103,6 +104,7 @@ passport.use(new FacebookStrategy({
                 newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
                 newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                 newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                newUser.local.email = profile.emails[0].value;
                 // save our user to the database
                 newUser.save(function (err) {
                     if (err)
@@ -116,6 +118,8 @@ passport.use(new FacebookStrategy({
     });
 })
 );
+
+
 
 passport.use(new GoogleStrategy({
 

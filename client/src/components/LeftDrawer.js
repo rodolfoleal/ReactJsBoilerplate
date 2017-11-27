@@ -6,6 +6,8 @@ import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router';
 import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
+import AddCircle from 'material-ui/svg-icons/content/add-circle';
 
 const LeftDrawer = (props) => {
   let { navDrawerOpen } = props;
@@ -69,6 +71,14 @@ const LeftDrawer = (props) => {
           style={styles.avatar.icon} />
         <span style={styles.avatar.span}>{props.username}</span>
       </div>
+
+      <MenuItem
+        style={styles.menuItem}
+        primaryText="Crie uma lista"
+        leftIcon={<AddCircle />}
+        containerElement={<Link to="/CreateList" />}
+      />
+      <Divider />
       <div>
         {props.menus.map((menu, index) =>
           <MenuItem
